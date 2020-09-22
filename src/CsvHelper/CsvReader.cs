@@ -1618,9 +1618,9 @@ namespace CsvHelper
 			for (var i = 0; i < context.HeaderRecord.Length; i++)
 			{
 				var name = context.ReaderConfiguration.PrepareHeaderForMatch(context.HeaderRecord[i], i);
-				if (context.NamedIndexes.ContainsKey(name))
+				if (context.NamedIndexes.TryGetValue(name, out var index))
 				{
-					context.NamedIndexes[name].Add(i);
+					index.Add(i);
 				}
 				else
 				{
