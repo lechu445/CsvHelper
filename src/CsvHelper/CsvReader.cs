@@ -179,9 +179,10 @@ namespace CsvHelper
 					continue;
 				}
 
-				var index = GetFieldIndex(memberMap.Data.Names.ToArray(), memberMap.Data.NameIndex, true);
+				var names = memberMap.Data.Names.ToArray();
+				var index = GetFieldIndex(names, memberMap.Data.NameIndex, true);
 				var isValid = index != -1 || memberMap.Data.IsOptional;
-				Configuration.HeaderValidated?.Invoke(isValid, memberMap.Data.Names.ToArray(), memberMap.Data.NameIndex, context);
+				Configuration.HeaderValidated?.Invoke(isValid, names, memberMap.Data.NameIndex, context);
 			}
 
 			foreach (var referenceMap in map.ReferenceMaps)
